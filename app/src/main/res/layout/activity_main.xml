@@ -29,7 +29,7 @@
         android:id="@+id/etServer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="wss://43.156.47.36/alarm"
+        android:hint="ws://43.156.47.36/alarm"
         android:textColor="#FFFFFF"
         android:textColorHint="#555555"
         android:inputType="textUri"

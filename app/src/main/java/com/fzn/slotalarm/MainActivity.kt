@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         btnPickMp3 = findViewById(R.id.btnPickMp3)
 
         // load config tersimpan
-        etServer.setText(prefs.getString("server", "wss://43.156.47.36/alarm"))
+        etServer.setText(prefs.getString("server", "ws://43.156.47.36/alarm"))
         etToken.setText(prefs.getString("token", ""))
         val savedMp3 = prefs.getString("alarm_mp3", null)
         tvMp3.text = if (savedMp3.isNullOrEmpty()) "Alarm: default sistem"

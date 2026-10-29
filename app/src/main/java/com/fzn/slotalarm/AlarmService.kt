@@ -67,7 +67,7 @@ class AlarmService : Service() {
 
     private fun connectWebSocket() {
         val prefs = getSharedPreferences("slotalarm", MODE_PRIVATE)
-        val server = prefs.getString("server", "wss://43.156.47.36/alarm") ?: return
+        val server = prefs.getString("server", "ws://43.156.47.36/alarm") ?: return
         val token = prefs.getString("token", "") ?: return
 
         val uri = URI(server)
