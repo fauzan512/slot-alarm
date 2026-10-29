@@ -26,18 +26,20 @@ jobs:
           gradle-version: '8.7'
 
       - name: Build Debug APK
-        run: gradle assembleDebug --no-daemon
-
-      - name: Build Release APK
-        run: gradle assembleRelease --no-daemon
+        run: gradle assembleDebug --no-daemon --stacktrace
 
       - name: Upload Debug APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: slot-alarm-debug
           path: app/build/outputs/apk/debug/app-debug.apk
 
+      - name: Build Release APK
+        run: gradle assembleRelease --no-daemon --stacktrace
+
       - name: Upload Release APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: slot-alarm-release
