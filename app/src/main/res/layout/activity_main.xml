@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#121212"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SLOT ALARM"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Server"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        android:layout_marginBottom="4dp" />
+
+    <EditText
+        android:id="@+id/etServer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="wss://43.156.47.36/alarm"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#555555"
+        android:inputType="textUri"
+        android:backgroundTint="#666666"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Token"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        android:layout_marginBottom="4dp" />
+
+    <EditText
+        android:id="@+id/etToken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="fzn-alarm-..."
+        android:textColor="#FFFFFF"
+        android:textColorHint="#555555"
+        android:inputType="text"
+        android:backgroundTint="#666666"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnPickMp3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="PILIH MP3 ALARM"
+        android:textSize="13sp"
+        android:backgroundTint="#333333"
+        android:textColor="#CCCCCC"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvMp3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alarm: default sistem"
+        android:textColor="#777777"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="○ MATI"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnToggle"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="NYALAKAN"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#1F6FEB" />
+
+</LinearLayout>
