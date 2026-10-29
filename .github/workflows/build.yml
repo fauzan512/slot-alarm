@@ -44,3 +44,20 @@ jobs:
         with:
           name: slot-alarm-release
           path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+      # ── Auto-deploy ke VPS biar bisa didownload langsung dari HP ──
+      - name: Deploy APK ke VPS
+        if: success()
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          scp -o StrictHostKeyChecking=no \
+            app/build/outputs/apk/debug/app-debug.apk \
+            "$VPS_USER@$VPS_HOST:/var/www/slot-alarm/app-debug.apk"
+          echo "APK ter-deploy ke http://$VPS_HOST/slot-alarm/app-debug.apk"

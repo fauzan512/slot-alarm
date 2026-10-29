@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- background: gelap pekat dengan gradasi vertikal simulasi via 2 layer -->
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M0,0 L108,0 L108,108 L0,108 Z" />
+    <path
+        android:fillColor="#242424"
+        android:pathData="M0,0 L108,0 L108,54 L0,54 Z" />
+
+    <!-- cincin aksen merah di tepi -->
+    <path
+        android:strokeColor="#3A1F1F"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M54,6 m-42,0 a42,42 0 1,0 84,0 a42,42 0 1,0 -84,0" />
+
+</vector>
