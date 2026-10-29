@@ -75,7 +75,6 @@ class AlarmService : Service() {
         wsClient = object : WebSocketClient(uri) {
             override fun onOpen(handshakedata: ServerHandshake?) {
                 updateNotif("Terhubung — mantau...")
-                // auth
                 send("""{"token":"$token"}""")
             }
 
@@ -88,7 +87,6 @@ class AlarmService : Service() {
 
             override fun onClose(code: Int, reason: String?, remote: Boolean) {
                 updateNotif("Terputus — reconnect...")
-                // auto reconnect 5 detik
                 android.os.Handler(mainLooper).postDelayed({
                     if (isRunning) connectWebSocket()
                 }, 5000)
@@ -96,6 +94,29 @@ class AlarmService : Service() {
 
             override fun onError(ex: Exception?) {
                 updateNotif("Error: ${ex?.message}")
+            }
+        }
+
+        // Cert server SAN-nya IP-only + critical marker, yang bikin
+        // Java-WebSocket gagal validasi. Server ini IP publik dengan token
+        // auth, jadi validasi cert dimatiin.
+        if (uri.scheme.equals("wss", ignoreCase = true)) {
+            try {
+                val trustAll = object : javax.net.ssl.X509TrustManager {
+                    override fun checkClientTrusted(
+                        chain: Array<java.security.cert.X509Certificate>?, authType: String?
+                    ) = Unit
+                    override fun checkServerTrusted(
+                        chain: Array<java.security.cert.X509Certificate>?, authType: String?
+                    ) = Unit
+                    override fun getAcceptedIssuers(): Array<java.security.cert.X509Certificate> =
+                        emptyArray()
+                }
+                val sslCtx = javax.net.ssl.SSLContext.getInstance("TLS")
+                sslCtx.init(null, arrayOf<javax.net.ssl.TrustManager>(trustAll), null)
+                wsClient?.setSocketFactory(sslCtx.socketFactory)
+            } catch (e: Exception) {
+                updateNotif("SSL setup gagal: ${e.message}")
             }
         }
 
